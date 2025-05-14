@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USTRA LOGIS - 구매 입고 계획</title>
+    <link rel="stylesheet" href="uid.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <!-- 좌측 사이드바 -->
+    <div class="sidebar">
+        <div class="logo">USTRA<br>LOGIS</div>
+        
+        <div class="menu-item">
+            <div class="icon">C</div>
+            <div class="menu-label">Components</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="icon">B</div>
+            <div class="menu-label">기준 정보 관리</div>
+        </div>
+        
+        <div class="menu-item active">
+            <div class="icon">P</div>
+            <div class="menu-label">입고 계획 관리</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="icon">O</div>
+            <div class="menu-label">출고 계획 관리</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="icon">I</div>
+            <div class="menu-label">입고 계획 관리</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="icon">S</div>
+            <div class="menu-label">시스템 관리</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="icon">C</div>
+            <div class="menu-label">CRM 관리 관리</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="icon">E</div>
+            <div class="menu-label">EDI 관계 관리</div>
+        </div>
+    </div>
+    
+    <!-- 메인 컨텐츠 -->
+    <div class="main-content">
+        <!-- 헤더 -->
+        <div class="header">
+            <div class="title">구매 입고 계획</div>
+            <div class="user-actions">
+                <span>관리자여 안녕하세요</span>
+                <button><span class="icon">L</span> 로그아웃</button>
+            </div>
+        </div>
+        
+        <!-- 탭 메뉴 -->
+        <div class="tabs">
+            <div class="tab active">구매 오더</div>
+            <div class="tab">개별 입고</div>
+        </div>
+        
+        <!-- 컨텐츠 영역 -->
+        <div class="content">
+            <!-- 필터 섹션 -->
+            <div class="filter-section">
+                <div class="filter-row">
+                    <div class="filter-label">
+                        일자<span class="required">*</span>
+                    </div>
+                    <div class="filter-input">
+                        <div class="date-picker">
+                            <input type="text" id="date-input" placeholder="날짜 선택" readonly>
+                            <div class="calendar" id="calendar">
+                                <div class="calendar-header">
+                                    <button id="prev-month">&lt;</button>
+                                    <span id="current-month-year"></span>
+                                    <button id="next-month">&gt;</button>
+                                </div>
+                                <div class="calendar-days" id="calendar-days">
+                                    <!-- JavaScript로 생성 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-label" style="margin-left: 20px;">
+                        공급업체
+                    </div>
+                    <div class="filter-input">
+                        <div class="dropdown">
+                            <input type="text" id="supplier-input" placeholder="공급업체 선택" readonly>
+                            <div class="dropdown-menu" id="supplier-dropdown">
+                                <div class="dropdown-item" data-value="S001">대한물류 주식회사</div>
+                                <div class="dropdown-item" data-value="S002">신한물류 유한회사</div>
+                                <div class="dropdown-item" data-value="S003">글로벌 서플라이 컴퍼니</div>
+                                <div class="dropdown-item" data-value="S004">코리아 로지스틱스</div>
+                                <div class="dropdown-item" data-value="S005">퍼스트 서플라이</div>
+                            </div>
+                        </div>
+                        <button class="search-btn">검색 <span class="icon">S</span></button>
+                    </div>
+                </div>
+                
+                <div class="filter-row">
+                    <div class="filter-label">
+                        제품 ID
+                    </div>
+                    <div class="filter-input">
+                        <input type="text" placeholder="제품 ID 입력">
+                    </div>
+                </div>
+                
+                <div class="filter-row">
+                    <div class="filter-label">
+                        전월 여부<span class="required">*</span>
+                    </div>
+                    <div class="filter-input">
+                        <select>
+                            <option value="YES">YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 데이터 테이블 섹션 -->
+            <div>
+                <div class="section-title">
+                    <span class="icon">▶</span> 오더 기본 정보
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="add-row">추가</button>
+                    <button class="btn btn-secondary" id="delete-row">저장</button>
+                </div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="checkbox-cell">
+                                <input type="checkbox" id="select-all">
+                            </th>
+                            <th>No.</th>
+                            <th>사업부</th>
+                            <th>공급업체 ID</th>
+                            <th>오더 일자</th>
+                            <th>공급업체명</th>
+                            <th>공급업체주소</th>
+                            <th>거래 규모</th>
+                            <th>단말기명</th>
+                            <th>FAX 번호</th>
+                            <th>입금계좌</th>
+                            <th>수량</th>
+                            <th>단가</th>
+                            <th>합계</th>
+                            <th>납기</th>
+                            <th>상태</th>
+                            <th>비고</th>
+                            <th>삭제</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-table-body">
+                        <!-- JavaScript로 생성 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- 푸터 -->
+        <div class="footer">
+            <button class="btn">구매 입고 계획</button>
+            <div>© 2023 USTRA LOGIS. ALL RIGHT RESERVED.</div>
+        </div>
+    </div>
+    
+    <script>
+        // 카렌다 기능 구현
+        document.addEventListener('DOMContentLoaded', function() {
+            // 날짜 선택기 관련 요소
+            const dateInput = document.getElementById('date-input');
+            const calendar = document.getElementById('calendar');
+            const currentMonthYear = document.getElementById('current-month-year');
+            const prevMonth = document.getElementById('prev-month');
+            const nextMonth = document.getElementById('next-month');
+            const calendarDays = document.getElementById('calendar-days');
+            
+            // 현재 날짜
+            let currentDate = new Date();
+            let selectedDate = null;
+            
+            // 달력 토글
+            dateInput.addEventListener('click', function() {
+                calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
+                renderCalendar(currentDate);
+            });
+            
+            // 달력 외부 클릭 감지
+            document.addEventListener('click', function(e) {
+                if (!dateInput.contains(e.target) && !calendar.contains(e.target)) {
+                    calendar.style.display = 'none';
+                }
+            });
+            
+            // 이전 달
+            prevMonth.addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar(currentDate);
+            });
+            
+            // 다음 달
+            nextMonth.addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar(currentDate);
+            });
+            
+            // 달력 렌더링
+            function renderCalendar(date) {
+                // 년월 표시
+                const year = date.getFullYear();
+                const month = date.getMonth();
+                currentMonthYear.textContent = `${year}년 ${month + 1}월`;
+                
+                // 현재 월의 첫 날과 마지막 날
+                const firstDay = new Date(year, month, 1);
+                const lastDay = new Date(year, month + 1, 0);
+                
+                // 달력 초기화
+                calendarDays.innerHTML = '';
+                
+                // 요일 헤더 추가
+                const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+                weekdays.forEach(day => {
+                    const dayElement = document.createElement('div');
+                    dayElement.classList.add('calendar-day-header');
+                    dayElement.textContent = day;
+                    calendarDays.appendChild(dayElement);
+                });
+                
+                // 이전 달의 날짜 채우기
+                const firstDayOfWeek = firstDay.getDay();
+                const prevMonthLastDay = new Date(year, month, 0).getDate();
+                
+                for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+                    const dayElement = document.createElement('div');
+                    dayElement.classList.add('calendar-day', 'other-month');
+                    dayElement.textContent = prevMonthLastDay - i;
+                    calendarDays.appendChild(dayElement);
+                }
+                
+                // 현재 달의 날짜 채우기
+                const today = new Date();
+                for (let i = 1; i <= lastDay.getDate(); i++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.classList.add('calendar-day');
+                    dayElement.textContent = i;
+                    
+                    // 오늘 날짜 표시
+                    if (year === today.getFullYear() && month === today.getMonth() && i === today.getDate()) {
+                        dayElement.classList.add('today');
+                    }
+                    
+                    // 선택된 날짜 표시
+                    if (selectedDate && year === selectedDate.getFullYear() && month === selectedDate.getMonth() && i === selectedDate.getDate()) {
+                        dayElement.classList.add('selected');
+                    }
+                    
+                    // 날짜 선택 이벤트
+                    dayElement.addEventListener('click', function() {
+                        selectedDate = new Date(year, month, i);
+                        dateInput.value = `${year}-${(month + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
+                        calendar.style.display = 'none';
+                        renderCalendar(currentDate); // 선택 상태 업데이트
+                    });
+                    
+                    calendarDays.appendChild(dayElement);
+                }
+                
+                // 다음 달의 날짜 채우기
+                const remainingCells = 42 - (firstDayOfWeek + lastDay.getDate());
+                for (let i = 1; i <= remainingCells; i++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.classList.add('calendar-day', 'other-month');
+                    dayElement.textContent = i;
+                    calendarDays.appendChild(dayElement);
+                }
+            }
+            
+            // 초기 달력 렌더링
+            renderCalendar(currentDate);
+            
+            // 공급업체 드롭다운
+            const supplierInput = document.getElementById('supplier-input');
+            const supplierDropdown = document.getElementById('supplier-dropdown');
+            const supplierItems = document.querySelectorAll('.dropdown-item');
+            
+            supplierInput.addEventListener('click', function() {
+                supplierDropdown.style.display = supplierDropdown.style.display === 'none' ? 'block' : 'none';
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!supplierInput.contains(e.target) && !supplierDropdown.contains(e.target)) {
+                    supplierDropdown.style.display = 'none';
+                }
+            });
+            
+            supplierItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    supplierInput.value = this.textContent;
+                    supplierInput.dataset.value = this.dataset.value;
+                    supplierDropdown.style.display = 'none';
+                });
+            });
+            
+            // 데이터 테이블 관리
+            const dataTableBody = document.getElementById('data-table-body');
+            const addRowButton = document.getElementById('add-row');
+            const deleteRowButton = document.getElementById('delete-row');
+            const selectAllCheckbox = document.getElementById('select-all');
+            
+            // 샘플 데이터
+            const sampleData = [
+                {
+                    id: 1,
+                    division: '영업1팀',
+                    supplierID: 'S001',
+                    orderDate: '2025-05-14',
+                    supplierName: '대한물류 주식회사',
+                    supplierAddress: '서울시 강남구',
+                    tradeScale: '대규모',
+                    deviceName: 'PDA-001',
+                    faxNumber: '02-123-4567',
+                    account: '국민은행 123-45-67890',
+                    quantity: 100,
+                    price: 50000,
+                    total: 5000000,
+                    deliveryDate: '2025-05-20',
+                    status: '진행중',
+                    note: '긴급 배송 요청'
+                },
+                {
+                    id: 2,
+                    division: '영업2팀',
+                    supplierID: 'S003',
+                    orderDate: '2025-05-13',
+                    supplierName: '글로벌 서플라이 컴퍼니',
+                    supplierAddress: '인천시 송도구',
+                    tradeScale: '중규모',
+                    deviceName: 'PDA-002',
+                    faxNumber: '032-456-7890',
+                    account: '신한은행 456-78-90123',
+                    quantity: 50,
+                    price: 75000,
+                    total: 3750000,
+                    deliveryDate: '2025-05-25',
+                    status: '대기중',
+                    note: '품질 검사 필요'
+                }
+            ];
+            
+            // 테이블 초기화
+            function renderTable() {
+                dataTableBody.innerHTML = '';
+                
+                if (sampleData.length === 0) {
+                    const noDataRow = document.createElement('tr');
+                    const noDataCell = document.createElement('td');
+                    noDataCell.colSpan = 18;
+                    noDataCell.className = 'no-data';
+                    noDataCell.textContent = '조회된 데이터가 없습니다.';
+                    noDataRow.appendChild(noDataCell);
+                    dataTableBody.appendChild(noDataRow);
+                    return;
+                }
+                
+                sampleData.forEach((item, index) => {
+                    const row = document.createElement('tr');
+                    
+                    // 체크박스 셀
+                    const checkboxCell = document.createElement('td');
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.dataset.id = item.id;
+                    checkboxCell.appendChild(checkbox);
+                    row.appendChild(checkboxCell);
+                    
+                    // 데이터 셀들
+                    row.innerHTML += `
+                        <td>${index + 1}</td>
+                        <td>${item.division}</td>
+                        <td>${item.supplierID}</td>
+                        <td>${item.orderDate}</td>
+                        <td>${item.supplierName}</td>
+                        <td>${item.supplierAddress}</td>
+                        <td>${item.tradeScale}</td>
+                        <td>${item.deviceName}</td>
+                        <td>${item.faxNumber}</td>
+                        <td>${item.account}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.price}</td>
+                        <td>${item.total}</td>
+                        <td>${item.deliveryDate}</td>
+                        <td>${item.status}</td>
+                        <td>${item.note}</td>
+                        <td><button class="delete-btn" data-id="${item.id}">삭제</button></td>
+                    `;
+                    
+                    dataTableBody.appendChild(row);
+                });
+                
+                // 삭제 버튼 이벤트 연결
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.dataset.id);
+                        const index = sampleData.findIndex(item => item.id === id);
+                        
+                        if (index !== -1) {
+                            sampleData.splice(index, 1);
+                            renderTable();
+                        }
+                    });
+                });
+            }
+            
+            // 테이블 행 추가
+            addRowButton.addEventListener('click', function() {
+                const newId = sampleData.length > 0 ? Math.max(...sampleData.map(item => item.id)) + 1 : 1;
+                const today = new Date();
+                const dateStr = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
+                
+                const newRow = {
+                    id: newId,
+                    division: '',
+                    supplierID: '',
+                    orderDate: dateStr,
+                    supplierName: '',
+                    supplierAddress: '',
+                    tradeScale: '',
+                    deviceName: '',
+                    faxNumber: '',
+                    account: '',
+                    quantity: 0,
+                    price: 0,
+                    total: 0,
+                    deliveryDate: '',
+                    status: '대기중',
+                    note: ''
+                };
+                
+                sampleData.push(newRow);
+                renderTable();
+            });
+            
+            // 전체 선택 체크박스
+            selectAllCheckbox.addEventListener('change', function() {
+                const checkboxes = document.querySelectorAll('#data-table-body input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = this.checked;
+                });
+            });
+            
+            // 검색 버튼 이벤트
+            document.querySelector('.search-btn').addEventListener('click', function() {
+                const date = document.getElementById('date-input').value;
+                const supplier = document.getElementById('supplier-input').value;
+                
+                alert(`검색 조건: 날짜=${date || '전체'}, 공급업체=${supplier || '전체'}`);
+            });
+            
+            // 초기 테이블 렌더링
+            renderTable();
+        });
+    </script>
+</body>
+</html>

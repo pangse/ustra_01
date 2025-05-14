@@ -1,0 +1,46 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  header h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .search-section, .result-section, .actions {
+    margin-bottom: 30px;
+  }
+  .form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  input, select {
+    padding: 6px;
+    font-size: 14px;
+  }
+  button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+  }
+  thead {
+    background: #e0e0e0;
+  }
+  td, th {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  

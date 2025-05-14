@@ -1,0 +1,220 @@
+/* U.STRA LOGIS Style System */
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 125px;
+    background-color: #2875d9;
+    color: white;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.logo {
+    padding: 20px 15px;
+    background-color: #2875d9;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.menu-item {
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 3px solid transparent;
+}
+
+.menu-item i {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.menu-item.active {
+    background-color: #1c5fad;
+    border-left: 3px solid white;
+}
+
+.menu-item:hover {
+    background-color: #1c5fad;
+}
+
+.menu-label {
+    font-size: 12px;
+    text-align: center;
+    word-break: keep-all;
+}
+
+/* Icon Styles */
+.icon {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* Main Content Container */
+.main-content {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Tab Navigation */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-right: 1px solid #ddd;
+    background-color: #f5f5f5;
+}
+
+.tab.active {
+    background-color: white;
+    border-bottom: 2px solid #2875d9;
+}
+
+/* Content Area */
+.content {
+    padding: 20px;
+}
+
+/* Section Titles */
+.section-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.section-title i {
+    margin-right: 5px;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 15px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+.btn-primary {
+    background-color: #2875d9;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #4f5761;
+    color: white;
+}
+
+.search-btn {
+    background-color: #2875d9;
+    color: white;
+    border: none;
+    padding: 9px 15px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+    background-color: #f5f5f5;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filter-row {
+        flex-direction: column;
+    }
+    
+    .filter-label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .data-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

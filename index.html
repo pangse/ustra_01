@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>구매 입고 계획</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>구매 입고 계획</h1>
+    </header>
+
+    <section class="search-section">
+      <div class="form-row">
+        <label for="order-date">입차</label>
+        <input type="date" id="order-date-start">
+        ~
+        <input type="date" id="order-date-end">
+
+        <label for="supplier">공급업체</label>
+        <input type="text" id="supplier" placeholder="입력하세요">
+      </div>
+
+      <div class="form-row">
+        <label for="plan-id">계획 ID</label>
+        <input type="text" id="plan-id" placeholder="입력하세요">
+
+        <label for="remain">잔량 여부</label>
+        <select id="remain">
+          <option value="YES">YES</option>
+          <option value="NO">NO</option>
+        </select>
+
+        <button onclick="search()">검색</button>
+        <button onclick="reset()">🔄</button>
+      </div>
+    </section>
+
+    <section class="result-section">
+      <h2>오더 기본 정보</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>사업장 ID</th>
+            <th>사업장명</th>
+            <th>계획 오더 ID</th>
+            <th>오더 입차</th>
+            <th>공급업체 ID</th>
+            <th>공급업체명</th>
+            <th>거래 구분</th>
+            <th>전화번호</th>
+            <th>FAX 번호</th>
+            <th>총 중량</th>
+            <th>총 부피</th>
+            <th>잔량 여부</th>
+            <th>상태</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody id="result-body">
+          <tr><td colspan="15" style="text-align:center;">조회된 데이터가 없습니다</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="actions">
+      <button onclick="addRow()">추가</button>
+      <button onclick="save()">저장</button>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
